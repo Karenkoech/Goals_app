@@ -1,19 +1,20 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Goal } from '../goal';
 
 @Component({
-  selector: 'app-goal-detail',
-  template: `
+  selector: 'app-goallist',
+  template:`
   <h2> Goal list</h2>
   <ul *ngFor="let goal of goals">
     <li>
-      {{goal.id}} .  {{goal.name}} - {{goal.description}}
+      {{goal.name}}
     </li>
   </ul>
+
   `,
-  styleUrls: ['./goal-detail.component.css']
+  styleUrls: ['./goallist.component.css']
 })
-export class GoalDetailComponent implements OnInit {
+export class GoallistComponent implements OnInit {
   goals: Goal[] =[
     new Goal(1, 'Watch finding Nemo', 'Find an online version and watch merlin find his son',),
     new Goal(2, 'Buy Cookies','I have to buy cookies for the parrot',),
@@ -22,13 +23,6 @@ export class GoalDetailComponent implements OnInit {
     new Goal(5, 'Solve math homework','Damn Math',),
     new Goal( 6, 'Plot my world domination plan','Cause I am an evil overlord',),
   ];
-  @Input()
-  goal!: Goal;
-  @Output() isComplete = new EventEmitter<boolean>();
-
-  goalComplete(complete:boolean){
-    this.isComplete.emit(complete);
-  }
   constructor() { }
 
   ngOnInit(): void {
